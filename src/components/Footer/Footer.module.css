@@ -1,0 +1,23 @@
+/* Footer.module.css */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #000000; /* Set your desired background color */
+  color: #fff; /* Set your desired text color */
+  position: relative;
+  margin-top: auto; /* Push the footer to the bottom of its container */
+}
+
+.left {
+  margin-left: 10px; /* Set your desired left margin */
+}
+
+.right {
+  margin-right: 10px; /* Set your desired right margin */
+}
+.twitter {
+  height: 42px;
+  width: 42px;
+}
