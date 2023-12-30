@@ -8,6 +8,7 @@
   color: #fff; /* Set your desired text color */
   position: relative;
   margin-top: auto; /* Push the footer to the bottom of its container */
+  width: 100%;
 }
 
 .left {
