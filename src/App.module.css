@@ -1,3 +1,10 @@
 .main{
     min-height: 78vh;
 }
+/* Responsive Main Styles */
+@media screen and (max-width: 768px) {
+    .main {
+      min-height: auto;
+    }
+  }
+  

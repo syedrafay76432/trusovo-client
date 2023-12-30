@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   background: #fff;
 }
 
@@ -13,4 +13,10 @@ body {
 
 main {
   margin-top: 6rem;
+}
+/* Responsive Global Styles */
+@media screen and (max-width: 768px) {
+  main {
+    margin-top: 3rem;
+  }
 }

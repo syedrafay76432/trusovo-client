@@ -8,3 +8,15 @@
 .actions {
   text-align: center;
 }
+/* Responsive Login Styles */
+@media screen and (max-width: 768px) {
+  .login {
+    width: 100%;
+    max-width: none;
+    padding: 1rem;
+  }
+
+  .actions {
+    margin-top: 1rem;
+  }
+}

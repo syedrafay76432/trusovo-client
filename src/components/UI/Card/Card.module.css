@@ -3,3 +3,9 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 10px;
 }
+/* Responsive Card Styles */
+@media screen and (max-width: 768px) {
+  .card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}

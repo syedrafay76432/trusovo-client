@@ -41,3 +41,26 @@
  p{
   color: gray;
 }
+/* Responsive Home Styles */
+@media screen and (max-width: 768px) {
+  .top {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .FirstHeading {
+    margin-left: 0;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .services {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .images {
+    width: 100%;
+    height: auto;
+  }
+}
