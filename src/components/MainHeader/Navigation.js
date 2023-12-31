@@ -9,18 +9,26 @@ const Navigation = () => {
     <nav className={classes.nav}>
       <ul>
         <li>
-          <button className={classes.menuBtn} href="/">Home</button>
+          <button className={classes.menuBtn} onClick={ctx.hideDasboard}>
+            Home
+          </button>
         </li>
 
         <li>
-          <button className={classes.menuBtn} href="/">Dashboard</button>
+          <button className={classes.menuBtn} onClick={ctx.showDasboard}>
+            Dashboard
+          </button>
         </li>
         <li>
-          <button className={classes.menuBtn} href="/">Start New Transaction</button>
+          <button className={classes.menuBtn} onClick={ctx.showDasboard}>
+            Start New Transaction
+          </button>
         </li>
 
         <li>
-          <button className={classes.btn} onClick={ctx.onLogout}>Logout</button>
+          <button className={classes.btn} onClick={ctx.onLogout}>
+            Logout
+          </button>
         </li>
       </ul>
     </nav>

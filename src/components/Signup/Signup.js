@@ -38,6 +38,7 @@ const Signup = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const ctx = useContext(AuthContext);
+  const [name, setName] = useState("");
   const [formIsValid, setFormIsValid] = useState(false);
   const [emailstate, dispatchemail] = useReducer(emailReducer, {
     value: "",
@@ -63,6 +64,9 @@ const Signup = (props) => {
     };
   }, [emailisValid, passwordisValid]);
 
+  const nameChangeHandler = (event) => {
+    setName(event.target.value );
+  };
   const emailChangeHandler = (event) => {
     dispatchemail({ type: "USER_INPUT", val: event.target.value });
 
@@ -86,7 +90,11 @@ const Signup = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      ctx.onLogin(emailstate.value, passwordstate.value);
+      ctx.onSignup({
+        name: name,
+        email: emailstate.value,
+        password: passwordstate.value,
+      });
     } else if (!emailisValid) {
       emailRef.current.focus();
     } else {
@@ -97,7 +105,7 @@ const Signup = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <Input ref={nameRef} id="name" type="name" label="Name" />
+        <Input ref={nameRef} id="name" type="name" onChange={nameChangeHandler} label="Name" />
         <Input
           ref={emailRef}
           id="email"

@@ -1,0 +1,17 @@
+.expenses {
+    padding: 1rem;
+    background-color: rgb(31, 31, 31);
+    margin: 2rem auto;
+    width: 50rem;
+    max-width: 95%;
+  }
+  .listHeading{
+    display: flex; 
+    flex-direction: row;
+    list-style: none;
+    color: white;
+  }
+  .listHeading li{
+    margin-left: 1.1rem;
+    margin-right: 4rem;
+  }

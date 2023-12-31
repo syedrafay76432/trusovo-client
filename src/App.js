@@ -7,6 +7,7 @@ import AuthContext from "./store/auth-context";
 import Signup from "./components/Signup/Signup";
 import Footer from "./components/Footer/Footer";
 import classes from "./App.module.css";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const ctx = useContext(AuthContext);
@@ -14,11 +15,12 @@ function App() {
     <>
       <MainHeader />
       <main className={classes.main}>
-        {((!ctx.isLoggedIn) && ctx.SignupForm) && <Signup/>}
-        {((!ctx.isLoggedIn) && !ctx.SignupForm) && <Login />}
-        {ctx.isLoggedIn && <Home />}
+        {!ctx.isLoggedIn && ctx.SignupForm && <Signup />}
+        {!ctx.isLoggedIn && !ctx.SignupForm && <Login />}
+        {ctx.isLoggedIn && ctx.dashboard && <Dashboard></Dashboard>}
+        {ctx.isLoggedIn && !ctx.dashboard && <Home></Home>}
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

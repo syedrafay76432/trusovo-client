@@ -85,7 +85,7 @@ const Login = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      ctx.onLogin(emailstate.value, passwordstate.value);
+      ctx.onLogin({ email: emailstate.value, password: passwordstate.value });
     } else if (!emailisValid) {
       emailRef.current.focus();
     } else {
