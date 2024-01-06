@@ -40,6 +40,7 @@ const Signup = (props) => {
   const ctx = useContext(AuthContext);
   const [name, setName] = useState("");
   const [formIsValid, setFormIsValid] = useState(false);
+  const [wrongEmail, setWrongEmail] = useState("");
   const [emailstate, dispatchemail] = useReducer(emailReducer, {
     value: "",
     isValid: null,
@@ -65,7 +66,7 @@ const Signup = (props) => {
   }, [emailisValid, passwordisValid]);
 
   const nameChangeHandler = (event) => {
-    setName(event.target.value );
+    setName(event.target.value);
   };
   const emailChangeHandler = (event) => {
     dispatchemail({ type: "USER_INPUT", val: event.target.value });
@@ -87,14 +88,17 @@ const Signup = (props) => {
     dispatchpassword({ type: "INPUT_BLUR" });
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     if (formIsValid) {
-      ctx.onSignup({
+      await ctx.onSignup({
         name: name,
         email: emailstate.value,
         password: passwordstate.value,
       });
+      if (ctx.isLoggedIn === false) {
+        setWrongEmail("Invalid E-mail or Email already exist!");
+      }
     } else if (!emailisValid) {
       emailRef.current.focus();
     } else {
@@ -105,7 +109,14 @@ const Signup = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <Input ref={nameRef} id="name" type="name" onChange={nameChangeHandler} label="Name" />
+        <p className={classes.p}>{wrongEmail}</p>
+        <Input
+          ref={nameRef}
+          id="name"
+          type="name"
+          onChange={nameChangeHandler}
+          label="Name"
+        />
         <Input
           ref={emailRef}
           id="email"

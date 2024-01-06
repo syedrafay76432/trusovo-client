@@ -1,22 +1,19 @@
 .login {
   width: 90%;
   max-width: 40rem;
-  margin: 2rem auto;
+  margin: 4rem auto;
   padding: 2rem;
 }
 
 .actions {
   text-align: center;
 }
+.p{
+  color: rgb(211, 9, 9);
+}
 /* Responsive Login Styles */
 @media screen and (max-width: 768px) {
   .login {
-    width: 100%;
-    max-width: none;
-    padding: 1rem;
-  }
-
-  .actions {
-    margin-top: 1rem;
+    margin: 10rem auto;
   }
 }

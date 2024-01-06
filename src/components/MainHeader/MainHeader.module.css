@@ -43,7 +43,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.26);
 }
 /* Responsive Header Styles */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .main-header {
     height: auto;
     flex-direction: column;
@@ -62,4 +62,4 @@
     height: 8%;
     width: 8%;
   }
-}
+} */

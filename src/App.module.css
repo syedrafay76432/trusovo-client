@@ -4,7 +4,7 @@
 /* Responsive Main Styles */
 @media screen and (max-width: 768px) {
     .main {
-      min-height: auto;
+      min-height: 77vh;
     }
   }
   

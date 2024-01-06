@@ -25,12 +25,7 @@
 /* Responsive Footer Styles */
 @media screen and (max-width: 768px) {
   .footer {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .left,
-  .right {
-    margin: 10px 0;
+    /* position: absolute; */
+    bottom: 0;
   }
 }

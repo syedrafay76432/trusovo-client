@@ -22,7 +22,7 @@ const Expenses = (props) => {
           selected={filteredStatus}
           onChangeFilter={filterChangeHandler}
         />
-        <ExpensesChart expenses={filteredExpenses} />
+        {/* <ExpensesChart expenses={filteredExpenses} /> */}
         
         <ul className="listHeading">
           <li>Date</li>

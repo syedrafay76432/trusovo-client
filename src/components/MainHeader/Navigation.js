@@ -19,11 +19,6 @@ const Navigation = () => {
             Dashboard
           </button>
         </li>
-        <li>
-          <button className={classes.menuBtn} onClick={ctx.showDasboard}>
-            Start New Transaction
-          </button>
-        </li>
 
         <li>
           <button className={classes.btn} onClick={ctx.onLogout}>

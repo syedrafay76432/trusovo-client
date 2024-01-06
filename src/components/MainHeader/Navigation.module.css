@@ -21,7 +21,7 @@
 
 .menuBtn:hover,
 .menuBtn:active {
-  color: #f3cafb;
+  color: #a892ee;
 }
 
 .btn {
@@ -41,11 +41,11 @@
 
 .nav btn:hover,
 .nav btn:active {
-  color: #f3cafb;
+  color: #a892ee;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.26);
 }
 /* Responsive Navigation Styles */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .nav {
     flex-direction: column;
     align-items: center;
@@ -59,4 +59,4 @@
   .menuBtn {
     margin-top: 1rem;
   }
-}
+} */

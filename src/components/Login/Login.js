@@ -38,6 +38,7 @@ const Login = (props) => {
   const passwordRef = useRef();
   const ctx = useContext(AuthContext);
   const [formIsValid, setFormIsValid] = useState(false);
+  const [wrongEmail, setWrongEmail] = useState("");
   const [emailstate, dispatchemail] = useReducer(emailReducer, {
     value: "",
     isValid: null,
@@ -82,10 +83,16 @@ const Login = (props) => {
     dispatchpassword({ type: "INPUT_BLUR" });
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     if (formIsValid) {
-      ctx.onLogin({ email: emailstate.value, password: passwordstate.value });
+      await ctx.onLogin({
+        email: emailstate.value,
+        password: passwordstate.value,
+      });
+      if (ctx.isLoggedIn === false) {
+        setWrongEmail("Invalid E-mail or Password");
+      }
     } else if (!emailisValid) {
       emailRef.current.focus();
     } else {
@@ -95,6 +102,7 @@ const Login = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
+        <p className={classes.p}>{wrongEmail}</p>
         <Input
           ref={emailRef}
           id="email"
