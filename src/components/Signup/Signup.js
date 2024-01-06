@@ -91,12 +91,13 @@ const Signup = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
     if (formIsValid) {
-      await ctx.onSignup({
-        name: name,
-        email: emailstate.value,
-        password: passwordstate.value,
-      });
-      if (ctx.isLoggedIn === false) {
+      try {
+        await ctx.onSignup({
+          name: name,
+          email: emailstate.value,
+          password: passwordstate.value,
+        });
+      } catch (error) {
         setWrongEmail("Invalid E-mail or Email already exist!");
       }
     } else if (!emailisValid) {

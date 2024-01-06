@@ -83,6 +83,7 @@ export const AuthContextProvider = (props) => {
       })
       .catch((error) => {
         console.error("An error occurred while Signing up:", error);
+        throw new Error("Error while signing up");
       });
   };
 
