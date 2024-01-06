@@ -20,16 +20,30 @@ export const AuthContextProvider = (props) => {
   const [SignupForm, setSignupForm] = useState(false);
 
   useEffect(() => {
-    const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
+    //   const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
 
-    if (storedUserLoggedInInformation === "1") {
-      setIsLoggedIn(true);
-    }
+    //   if (storedUserLoggedInInformation === "1") {
+    //     setIsLoggedIn(true);
+    //   }
+
+    // Attach the onBeforeUnload function to the beforeunload event
+    window.addEventListener("beforeunload", logoutHandler);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("beforeunload", logoutHandler);
+    };
   }, []);
 
-  const logoutHandler = () => {
-    localStorage.removeItem("isLoggedIn");
+  const logoutHandler = async () => {
+    // localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
+    await axios
+      .post("https://trusovo-server.vercel.app/users/logout")
+      .then((data) => {})
+      .catch((error) => {
+        console.error("An error occurred while logging out:", error);
+      });
   };
 
   const loginHandler = async (loginData) => {
