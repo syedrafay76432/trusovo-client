@@ -22,9 +22,6 @@ const ExpenseForm = (props) => {
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
   };
-  const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
-  };
   const describtionChangeHandler = (event) => {
     setEnteredDescribtion(event.target.value);
   };
@@ -46,6 +43,7 @@ const ExpenseForm = (props) => {
       date: new Date(enteredDate),
       role: enteredRole,
       status: "in_progress",
+      email: enteredEmail
     };
     props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
@@ -54,6 +52,7 @@ const ExpenseForm = (props) => {
     setEnteredDescribtion("");
     setEnteredRole("");
     setEnteredPeriod("");
+    setEnteredEmail("")
   };
 
   return (
