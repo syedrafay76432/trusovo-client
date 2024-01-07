@@ -4,11 +4,14 @@ import axios from "axios";
 const AuthContext = React.createContext({
   token: "",
   dashboard: true,
+  expenseItemRerender:false,
   SignupForm: false,
   ShowSignupForm: () => {},
   HideSignupForm: () => {},
   isLoggedIn: false,
   onLogout: () => {},
+  onCancel: (id) => {},
+  onComplete: (id) => {},
   onLogin: (loginData) => {},
   Signup: (SignupData) => {},
 });
@@ -16,6 +19,7 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [dashboard, setDashboard] = useState(false);
+  const [expenseItemRerender, setExpensesItemRerender] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [SignupForm, setSignupForm] = useState(false);
 
@@ -46,12 +50,55 @@ export const AuthContextProvider = (props) => {
       });
   };
 
+  const onCancel = async (id) => {
+    // console.log(loginData);
+    await axios
+      .patch(
+        `https://trusovo-server.vercel.app/tasks/${id}`,
+        { status: "canceled" },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((data) => {
+        // console.log(data);
+        setExpensesItemRerender(true)
+      })
+      .catch((error) => {
+        console.error("An error occurred while caceling:", error);
+      });
+  };
+  const onComplete = async (id) => {
+    // console.log(loginData);
+    await axios
+      .patch(
+        `https://trusovo-server.vercel.app/tasks/${id}`,
+        {
+          status: "completed",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((data) => {
+        // console.log(data);
+        setExpensesItemRerender(true)
+      })
+      .catch((error) => {
+        console.error("An error occurred while completing:", error);
+      });
+    
+  };
+
   const loginHandler = async (loginData) => {
     // console.log(loginData);
     await axios
       .post("https://trusovo-server.vercel.app/users/login", loginData)
       .then((data) => {
-        console.log(data.data.token); // Success message from the server
         setToken(data.data.token);
         localStorage.setItem("isLoggedIn", "1");
         setIsLoggedIn(true);
@@ -92,6 +139,7 @@ export const AuthContextProvider = (props) => {
       value={{
         token: token,
         dashboard: dashboard,
+        expenseItemRerender:expenseItemRerender,
         isLoggedIn: isLoggedIn,
         SignupForm: SignupForm,
         showDasboard: showDashboard,
@@ -101,6 +149,8 @@ export const AuthContextProvider = (props) => {
         ShowSignupForm: ShowSignupFormHandler,
         HideSignupForm: HideSignupFormHandler,
         onSignup: Signup,
+        onCancel: onCancel,
+        onComplete: onComplete,
       }}
     >
       {props.children}

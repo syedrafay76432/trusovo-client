@@ -20,7 +20,7 @@ function Dashboard() {
       .catch((err) => {
         console.log(err);
       });
-  }, [ctx.token]); //Here we call API to fetch Transactions from backend
+  }, [ctx.token,ctx.expenseItemRerender]); //Here we call API to fetch Transactions from backend
 
   const addExpenseHandler = (expense) => {
     // expenses.push(expense); Here we Call API to add Transaction
@@ -31,7 +31,6 @@ function Dashboard() {
         },
       })
       .then((data) => {
-        console.log(data);
         setExpenses((prevExpense) => {
           return [expense, ...prevExpense];
         });

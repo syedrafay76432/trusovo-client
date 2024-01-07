@@ -81,7 +81,7 @@ const ExpenseForm = (props) => {
         </div>
         <div className="new-expense__control">
           <label>Date</label>
-          <input required type="text" value={enteredDate} id="readOnlyInput" />
+          <input required type="date" value={enteredDate} id="readOnlyInput" />
         </div>
         <div className="new-expense__control">
           <label>Inspection period (days)</label>
@@ -97,8 +97,8 @@ const ExpenseForm = (props) => {
         <div className="new-expense__control">
           <label>Role</label>
           <select value={enteredRole} onChange={roleChangeHandler}>
-            <option value="completed">Buyer</option>
-            <option value="in_progress">Seller</option>
+            <option value="Buyer">Buyer</option>
+            <option value="Seller">Seller</option>
           </select>
         </div>
         <div className="new-expense__control">
