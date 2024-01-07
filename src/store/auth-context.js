@@ -43,7 +43,7 @@ export const AuthContextProvider = (props) => {
     // localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
     await axios
-      .post("https://trusovo-server.vercel.app/users/logout")
+      .post("https://trusovo-server.vercel.app/users/logoutAll")
       .then((data) => {})
       .catch((error) => {
         console.error("An error occurred while logging out:", error);
@@ -64,7 +64,7 @@ export const AuthContextProvider = (props) => {
       )
       .then((data) => {
         // console.log(data);
-        setExpensesItemRerender(true)
+        setExpensesItemRerender(data)
       })
       .catch((error) => {
         console.error("An error occurred while caceling:", error);
@@ -86,7 +86,7 @@ export const AuthContextProvider = (props) => {
       )
       .then((data) => {
         // console.log(data);
-        setExpensesItemRerender(true)
+        setExpensesItemRerender(data)
       })
       .catch((error) => {
         console.error("An error occurred while completing:", error);
