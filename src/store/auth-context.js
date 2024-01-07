@@ -4,7 +4,7 @@ import axios from "axios";
 const AuthContext = React.createContext({
   token: "",
   dashboard: true,
-  expenseItemRerender:false,
+  expenseItemRerender: false,
   SignupForm: false,
   ShowSignupForm: () => {},
   HideSignupForm: () => {},
@@ -43,7 +43,11 @@ export const AuthContextProvider = (props) => {
     // localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
     await axios
-      .post("https://trusovo-server.vercel.app/users/logoutAll")
+      .post("https://trusovo-server.vercel.app/users/logoutAll", {},{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((data) => {})
       .catch((error) => {
         console.error("An error occurred while logging out:", error);
@@ -64,7 +68,7 @@ export const AuthContextProvider = (props) => {
       )
       .then((data) => {
         // console.log(data);
-        setExpensesItemRerender(data)
+        setExpensesItemRerender(data);
       })
       .catch((error) => {
         console.error("An error occurred while caceling:", error);
@@ -86,12 +90,11 @@ export const AuthContextProvider = (props) => {
       )
       .then((data) => {
         // console.log(data);
-        setExpensesItemRerender(data)
+        setExpensesItemRerender(data);
       })
       .catch((error) => {
         console.error("An error occurred while completing:", error);
       });
-    
   };
 
   const loginHandler = async (loginData) => {
@@ -139,7 +142,7 @@ export const AuthContextProvider = (props) => {
       value={{
         token: token,
         dashboard: dashboard,
-        expenseItemRerender:expenseItemRerender,
+        expenseItemRerender: expenseItemRerender,
         isLoggedIn: isLoggedIn,
         SignupForm: SignupForm,
         showDasboard: showDashboard,

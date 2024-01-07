@@ -25,8 +25,8 @@ const Expenses = (props) => {
         {/* <ExpensesChart expenses={filteredExpenses} /> */}
         
         <ul className="listHeading">
+          <li>Date</li>
           <li>Title</li>
-          <li></li>
           <li></li>
           <li></li>
           <li>Amount</li>
