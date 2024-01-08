@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ExpenseForm.css";
+import AuthContext from "../../../store/auth-context";
 
 const ExpenseForm = (props) => {
+  const ctx = useContext(AuthContext);
+  const publicKey = ctx.publicKey;
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredItem, setEnteredItem] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -43,7 +46,7 @@ const ExpenseForm = (props) => {
       date: new Date(enteredDate),
       role: enteredRole,
       status: "in_progress",
-      email: enteredEmail
+      email: enteredEmail,
     };
     props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
@@ -52,7 +55,7 @@ const ExpenseForm = (props) => {
     setEnteredDescribtion("");
     setEnteredRole("");
     setEnteredPeriod("");
-    setEnteredEmail("")
+    setEnteredEmail("");
   };
 
   return (
@@ -81,6 +84,10 @@ const ExpenseForm = (props) => {
         <div className="new-expense__control">
           <label>Date</label>
           <input required type="date" value={enteredDate} id="readOnlyInput" />
+        </div>
+        <div className="new-expense__control">
+          <label>Public Key</label>
+          <input required type="text" value={publicKey} id="readOnlyInput" />
         </div>
         <div className="new-expense__control">
           <label>Inspection period (days)</label>

@@ -18,6 +18,8 @@ const ExpenseList = (props) => {
           date={expense.date}
           role={expense.role}
           status={expense.status}
+          email={expense.email}
+          owner = {expense.owner}
         />
       ))}
     </ul>

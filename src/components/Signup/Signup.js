@@ -101,6 +101,7 @@ const Signup = (props) => {
           name: name,
           email: emailstate.value,
           password: passwordstate.value,
+          publicKey: publicKey,
         });
       } catch (error) {
         setWrongEmail("Invalid E-mail or Email already exist!");

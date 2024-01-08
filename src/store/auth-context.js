@@ -3,7 +3,7 @@ import axios from "axios";
 
 const AuthContext = React.createContext({
   token: "",
-  publicKey: "",
+  publicKey:"",
   dashboard: true,
   expenseItemRerender: false,
   SignupForm: false,
@@ -109,8 +109,8 @@ export const AuthContextProvider = (props) => {
       .post("https://trusovo-server.vercel.app/users/login", loginData)
       .then((data) => {
         setToken(data.data.token);
-        setPublicKey(data.data.publicKey);
-        console.log(data.data.publicKey);
+        setPublicKey(data.data.user.publicKey);
+        console.log(data.data.user.publicKey);
         localStorage.setItem("isLoggedIn", "1");
         setIsLoggedIn(true);
       })
@@ -149,6 +149,7 @@ export const AuthContextProvider = (props) => {
     <AuthContext.Provider
       value={{
         token: token,
+        publicKey:publicKey,
         dashboard: dashboard,
         expenseItemRerender: expenseItemRerender,
         isLoggedIn: isLoggedIn,
