@@ -3,6 +3,7 @@ import axios from "axios";
 
 const AuthContext = React.createContext({
   token: "",
+  publicKey: "",
   dashboard: true,
   expenseItemRerender: false,
   SignupForm: false,
@@ -18,6 +19,7 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = (props) => {
   const [token, setToken] = useState("");
+  const [publicKey, setPublicKey] = useState("");
   const [dashboard, setDashboard] = useState(false);
   const [expenseItemRerender, setExpensesItemRerender] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,11 +45,15 @@ export const AuthContextProvider = (props) => {
     // localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
     await axios
-      .post("https://trusovo-server.vercel.app/users/logoutAll", {},{
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        "https://trusovo-server.vercel.app/users/logoutAll",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((data) => {})
       .catch((error) => {
         console.error("An error occurred while logging out:", error);
@@ -103,6 +109,8 @@ export const AuthContextProvider = (props) => {
       .post("https://trusovo-server.vercel.app/users/login", loginData)
       .then((data) => {
         setToken(data.data.token);
+        setPublicKey(data.data.publicKey);
+        console.log(data.data.publicKey);
         localStorage.setItem("isLoggedIn", "1");
         setIsLoggedIn(true);
       })

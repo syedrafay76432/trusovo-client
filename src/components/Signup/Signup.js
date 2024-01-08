@@ -35,10 +35,12 @@ const passwordReducer = (state, action) => {
 
 const Signup = (props) => {
   const nameRef = useRef();
+  const publicKeyRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const ctx = useContext(AuthContext);
   const [name, setName] = useState("");
+  const [publicKey, setPublicKey] = useState("");
   const [formIsValid, setFormIsValid] = useState(false);
   const [wrongEmail, setWrongEmail] = useState("");
   const [emailstate, dispatchemail] = useReducer(emailReducer, {
@@ -67,6 +69,9 @@ const Signup = (props) => {
 
   const nameChangeHandler = (event) => {
     setName(event.target.value);
+  };
+  const publicKeyChangeHandler = (event) => {
+    setPublicKey(event.target.value);
   };
   const emailChangeHandler = (event) => {
     dispatchemail({ type: "USER_INPUT", val: event.target.value });
@@ -137,6 +142,13 @@ const Signup = (props) => {
           value={passwordstate.value}
           onChange={passwordChangeHandler}
           onBlur={validatePasswordHandler}
+        />
+        <Input
+          ref={publicKeyRef}
+          id="publicKey"
+          type="publicKey"
+          onChange={publicKeyChangeHandler}
+          label="Public Key"
         />
 
         <div className={classes.actions}>
